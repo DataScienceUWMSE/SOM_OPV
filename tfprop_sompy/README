@@ -1,0 +1,41 @@
+***** tfprop_sompy: Self-Organizing Map (SOM) Data-Mining for Thermo-Fluid Properties
+***** Developed by Gota Kikugawa and Yuta Nishimura from Tohoku University, Japan
+
+1. Setup
+   You must build python environment and install common scientific libraries which are required by SOMPY library like numpy, scipy, scikit-learn, matplotlib, etc.
+   To this end, Anaconda distribution is recommended, which is found in
+   https://www.anaconda.com/ .
+   After that, SOMPY available at https://github.com/sevamoo/SOMPY is installed, e.g.
+   $ git clone https://github.com/sevamoo/SOMPY
+   $ cd SOMPY
+   $ python setup.py install
+
+2. How to use tfprof_sompy
+   1) Prepare for input data file
+      Input data should be prepared in a CSV format.
+      The first column corresponds to names of chemical species (first item should be "Name".)
+      The first row corresponds to names of thermophysical properties.
+      The actual data is prepared in this matrix style formatted in CSV.
+
+   2) Configure tfprop_config.py
+      This script is for configuration of SOM execution and visualization.
+      Comments in the script is mostly helpful to find a role of each control parameter.
+
+      "input_tfprop" is actually used columns for SOM analysis out of all the thermophysical properties listed in input data file (data format is mentioned above).
+
+      "name_tfprop" can be used to label specific column names, which would be useful for visualization.
+
+      If "isOutTrain" is true, you can store the result of SOM training in an HDF5 binary format in order to visualize the SOM trained data afterward.
+
+      "plt_style" is to change plotting style of matplotlib (completely optional).
+
+      By default, a SOM positioning map dialog is popped-up just after the SOM training.
+      If you want to save an image file of a SOM map, "isOutPosmap" should be enabled.
+      The file extension of the filename, which corresponds to the image format, is automatically recognized by matplotlib if it is supported.
+
+   3) Execute SOM training
+      For SOM training,
+      $ python tfprop_som.py
+      Once you have created SOM trained data, you can visualize it repeatedly by
+      $ python tfprop_vis.py
+      At this time, tweak tfprop_config.py to adjust the visualization result.
